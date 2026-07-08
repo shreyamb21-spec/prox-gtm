@@ -1,0 +1,48 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --paper: #f7f6f2;
+  --ink: #14161a;
+  --rule: #c9c7bf;
+  --muted: #6b6e66;
+  --accent: #e8590c;
+  --ok: #2f6b3a;
+}
+
+html {
+  background: var(--paper);
+  color: var(--ink);
+}
+
+body {
+  font-feature-settings: "tnum" 1;
+}
+
+::selection {
+  background: var(--accent);
+  color: var(--paper);
+}
+
+/* blinking cursor for streaming panels */
+@keyframes blink {
+  0%, 49% { opacity: 1; }
+  50%, 100% { opacity: 0; }
+}
+
+.stream-cursor::after {
+  content: "▍";
+  color: var(--accent);
+  animation: blink 1s step-end infinite;
+  margin-left: 1px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .stream-cursor::after {
+    animation: none;
+  }
+  * {
+    transition: none !important;
+  }
+}
